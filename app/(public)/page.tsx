@@ -9,6 +9,23 @@ export default function Home() {
       <nav className="border-b border-border bg-white/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <AmbiSightLogo size="md" showText />
+
+          {/* Center Navigation Links - Hidden on mobile */}
+          <div className="hidden md:flex items-center gap-8">
+            <a href="#product" className="text-sm font-medium text-text-primary hover:text-fluent-blue transition-colors">
+              Product
+            </a>
+            <a href="#research" className="text-sm font-medium text-text-primary hover:text-fluent-blue transition-colors">
+              Research
+            </a>
+            <a href="#pricing" className="text-sm font-medium text-text-primary hover:text-fluent-blue transition-colors">
+              Pricing
+            </a>
+            <a href="#resources" className="text-sm font-medium text-text-primary hover:text-fluent-blue transition-colors">
+              Resources
+            </a>
+          </div>
+
           <div className="flex items-center gap-4">
             <Link href="/login">
               <Button variant="ghost" size="sm">Sign In</Button>
@@ -60,18 +77,16 @@ export default function Home() {
                   variant="primary"
                   className="fluent-button-primary px-8 py-4 text-lg font-semibold"
                 >
-                  Start Assessment →
+                  Start Free Assessment
                 </Button>
               </Link>
-              <Link href="/login">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="px-8 py-4 text-lg font-semibold border-2 border-border hover:border-fluent-blue hover:bg-fluent-blue/5 transition-all"
-                >
-                  Sign In
-                </Button>
-              </Link>
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-8 py-4 text-lg font-semibold border-2 border-border hover:border-fluent-blue hover:bg-fluent-blue/5 transition-all"
+              >
+                Book Expert Walkthrough
+              </Button>
             </div>
 
             {/* Trust Indicators */}
@@ -150,6 +165,154 @@ export default function Home() {
                 approaches to organisational ambidexterity
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Research Credentials Section */}
+      <section id="research" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-fluent-purple/10 rounded-full mb-6">
+              <svg className="w-5 h-5 text-fluent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <span className="text-sm font-medium text-fluent-purple">Research-Backed Methodology</span>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-6">
+              Built on Rigorous Doctoral Research
+            </h2>
+            <p className="text-xl text-text-secondary mb-8 leading-relaxed">
+              AmbiSight is grounded in comprehensive doctoral research examining organisational ambidexterity across multiple dimensions. Our methodology has been validated through extensive interviews and survey data with industry leaders.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+              <div className="p-6 bg-background-secondary rounded-fluent">
+                <div className="text-3xl font-bold text-fluent-blue mb-2">250+</div>
+                <div className="text-sm text-text-secondary">Research Participants</div>
+              </div>
+              <div className="p-6 bg-background-secondary rounded-fluent">
+                <div className="text-3xl font-bold text-fluent-teal mb-2">5</div>
+                <div className="text-sm text-text-secondary">OA Dimensions Assessed</div>
+              </div>
+              <div className="p-6 bg-background-secondary rounded-fluent">
+                <div className="text-3xl font-bold text-fluent-purple mb-2">3</div>
+                <div className="text-sm text-text-secondary">Ambidexterity Approaches</div>
+              </div>
+            </div>
+
+            <Button variant="outline" size="lg">
+              View Methodology →
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works - 3 Steps */}
+      <section id="product" className="py-24 bg-background-secondary">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+              How AmbiSight Works
+            </h2>
+            <p className="text-xl text-text-secondary max-w-2xl mx-auto">
+              Three simple steps to unlock your organisation&apos;s ambidexterity potential
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Step 1 */}
+            <div className="relative">
+              <div className="fluent-card p-8 h-full">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-fluent-blue to-fluent-teal flex items-center justify-center text-white font-bold text-xl mb-6">
+                  1
+                </div>
+                <h3 className="text-xl font-semibold text-text-primary mb-3">
+                  Configure Your Diagnostic
+                </h3>
+                <p className="text-text-secondary leading-relaxed mb-4">
+                  Set up your organisation profile and select your diagnostic template. Choose from structural, sequential, or contextual ambidexterity frameworks.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-fluent-blue/10 text-fluent-blue text-xs font-medium rounded-full">
+                    Customizable
+                  </span>
+                  <span className="px-3 py-1 bg-fluent-teal/10 text-fluent-teal text-xs font-medium rounded-full">
+                    5 min setup
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="relative">
+              <div className="fluent-card p-8 h-full">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-fluent-purple to-fluent-blue flex items-center justify-center text-white font-bold text-xl mb-6">
+                  2
+                </div>
+                <h3 className="text-xl font-semibold text-text-primary mb-3">
+                  Launch Assessment
+                </h3>
+                <p className="text-text-secondary leading-relaxed mb-4">
+                  Deploy your assessment across business units and collect responses. Our privacy-preserving federated learning ensures data stays within your control.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-fluent-purple/10 text-fluent-purple text-xs font-medium rounded-full">
+                    Secure
+                  </span>
+                  <span className="px-3 py-1 bg-fluent-blue/10 text-fluent-blue text-xs font-medium rounded-full">
+                    Real-time
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="relative">
+              <div className="fluent-card p-8 h-full">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-fluent-teal to-fluent-purple flex items-center justify-center text-white font-bold text-xl mb-6">
+                  3
+                </div>
+                <h3 className="text-xl font-semibold text-text-primary mb-3">
+                  Review Insights
+                </h3>
+                <p className="text-text-secondary leading-relaxed mb-4">
+                  Analyze heatmaps, profiles, and AI-generated recommendations. Export board-ready reports and track progress over time.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-fluent-teal/10 text-fluent-teal text-xs font-medium rounded-full">
+                    AI-powered
+                  </span>
+                  <span className="px-3 py-1 bg-fluent-purple/10 text-fluent-purple text-xs font-medium rounded-full">
+                    Actionable
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Closing CTA */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 fluent-gradient-soft opacity-60"></div>
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold text-text-primary mb-6">
+            Ready to See Your Ambidexterity Profile?
+          </h2>
+          <p className="text-xl text-text-secondary mb-10">
+            Join leading organisations using AmbiSight to balance exploration and exploitation
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/register">
+              <Button size="lg" variant="primary" className="px-8 py-4 text-lg font-semibold">
+                Start Now
+              </Button>
+            </Link>
+            <Button size="lg" variant="outline" className="px-8 py-4 text-lg font-semibold">
+              Talk to Us
+            </Button>
           </div>
         </div>
       </section>
