@@ -39,13 +39,59 @@ export interface Driver {
 }
 
 // Organisation and User Types
+export type OrgSize = 'small' | 'medium' | 'large' | 'enterprise';
+
+export type OrgStructureType =
+  | 'functional'
+  | 'divisional'
+  | 'matrix'
+  | 'network'
+  | 'hybrid';
+
+export type DiagnosticGoal =
+  | 'exploration_heavy'
+  | 'exploitation_heavy'
+  | 'balanced'
+  | 'situational';
+
+export interface OnboardingData {
+  organisationDetails: {
+    name: string;
+    size: OrgSize;
+    sector: string;
+    region: string;
+    employeeCount?: number;
+  };
+  structureOverview: {
+    primaryStructure: OrgStructureType;
+    description?: string;
+    hasMultipleUnits: boolean;
+  };
+  diagnosticGoals: {
+    primaryGoal: DiagnosticGoal;
+    secondaryGoals?: DiagnosticGoal[];
+    notes?: string;
+  };
+  completedSteps: number[];
+  completedAt?: Date;
+}
+
+export interface UserPreferences {
+  rememberMe?: boolean;
+  theme?: 'light' | 'dark' | 'system';
+}
+
 export interface Organisation {
   id: string;
   name: string;
   industry?: string;
-  size?: number;
+  size: OrgSize;
+  sector?: string;
+  region?: string;
   createdAt: Date;
   updatedAt: Date;
+  onboardingCompleted: boolean;
+  onboardingData?: OnboardingData;
 }
 
 export interface User {
@@ -56,6 +102,8 @@ export interface User {
   role: UserRole;
   createdAt: Date;
   lastLogin?: Date;
+  onboardingCompleted: boolean;
+  preferences?: UserPreferences;
 }
 
 // Diagnostic Types

@@ -1,12 +1,20 @@
 'use client';
 
 import { useAuth } from '@/context/AuthContext';
+import { mockDb } from '@/lib/stores/mockDb';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function DashboardPage() {
   const { user } = useAuth();
+  const router = useRouter();
+
+  if (!user) return null;
+
+  const dbUser = mockDb.getUserById(user.id);
+  const showOnboardingPrompt = dbUser && !dbUser.onboardingCompleted;
 
   return (
     <div>
@@ -16,6 +24,38 @@ export default function DashboardPage() {
           Welcome back, {user?.name}
         </p>
       </div>
+
+      {/* Onboarding Prompt */}
+      {showOnboardingPrompt && (
+        <Card className="mb-8 border-blue-200 bg-blue-50">
+          <CardContent className="pt-6">
+            <div className="flex items-start gap-4">
+              <div className="text-4xl">🎯</div>
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  Complete Your Organisation Setup
+                </h3>
+                <p className="text-gray-700 mb-4">
+                  Finish setting up your organisation profile to unlock diagnostic capabilities
+                  and get personalized insights.
+                </p>
+                <div className="flex gap-3">
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    onClick={() => router.push('/onboarding')}
+                  >
+                    Complete Setup
+                  </Button>
+                  <Button variant="ghost" size="sm">
+                    Remind me later
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
