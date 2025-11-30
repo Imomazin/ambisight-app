@@ -11,31 +11,14 @@ import React, { createContext, useContext, useState } from 'react';
 import { AuthContextType, AuthUser } from '@/lib/auth/types';
 import { hasRole, hasAnyRole } from '@/lib/auth/types';
 import { UserRole } from '@/lib/types';
+import { mockDb } from '@/lib/stores/mockDb';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Mock users for development
-const MOCK_USERS: Record<string, { password: string; user: AuthUser }> = {
-  'admin@example.com': {
-    password: 'admin123',
-    user: {
-      id: 'user-1',
-      email: 'admin@example.com',
-      name: 'Admin User',
-      organisationId: 'org-1',
-      role: 'org_super_admin',
-    },
-  },
-  'viewer@example.com': {
-    password: 'viewer123',
-    user: {
-      id: 'user-2',
-      email: 'viewer@example.com',
-      name: 'Leadership Viewer',
-      organisationId: 'org-1',
-      role: 'leader_viewer',
-    },
-  },
+// Password storage (in real app, would be hashed in backend)
+const PASSWORDS: Record<string, string> = {
+  'admin@example.com': 'admin123',
+  'viewer@example.com': 'viewer123',
 };
 
 const AUTH_STORAGE_KEY = 'ambisight_mock_auth';
@@ -62,13 +45,62 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Simulate API delay
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    const mockUser = MOCK_USERS[email];
-    if (!mockUser || mockUser.password !== password) {
-      throw new Error('Invalid credentials');
+    const storedPassword = PASSWORDS[email];
+    if (!storedPassword || storedPassword !== password) {
+      throw new Error('Invalid email or password');
     }
 
-    setUser(mockUser.user);
-    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(mockUser.user));
+    const dbUser = mockDb.getUserByEmail(email);
+    if (!dbUser) {
+      throw new Error('User not found');
+    }
+
+    // Update last login
+    mockDb.updateUser(dbUser.id, { lastLogin: new Date() });
+
+    const authUser = mockDb.toAuthUser(dbUser);
+    setUser(authUser);
+    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(authUser));
+  };
+
+  const register = async (
+    email: string,
+    password: string,
+    name: string,
+    orgName: string,
+    orgSize: 'small' | 'medium' | 'large' | 'enterprise'
+  ): Promise<void> => {
+    // Simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 800));
+
+    // Check if user already exists
+    if (mockDb.getUserByEmail(email)) {
+      throw new Error('Email already registered');
+    }
+
+    // Create organisation
+    const org = mockDb.createOrganisation({
+      name: orgName,
+      size: orgSize,
+      onboardingCompleted: false,
+    });
+
+    // Create user
+    const newUser = mockDb.createUser({
+      email,
+      name,
+      organisationId: org.id,
+      role: 'org_super_admin', // First user is super admin
+      onboardingCompleted: false,
+    });
+
+    // Store password (in real app, would be hashed server-side)
+    PASSWORDS[email] = password;
+
+    // Auto-login
+    const authUser = mockDb.toAuthUser(newUser);
+    setUser(authUser);
+    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(authUser));
   };
 
   const logout = () => {
@@ -81,6 +113,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     isAuthenticated: !!user,
     isLoading: false,
     login,
+    register,
     logout,
     hasRole: (role: UserRole) => hasRole(user, role),
     hasAnyRole: (roles: UserRole[]) => hasAnyRole(user, roles),
