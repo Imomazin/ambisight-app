@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/Card';
+import { AmbiSightLogo } from '@/components/branding/AmbiSightLogo';
 import { mockDb } from '@/lib/stores/mockDb';
 
 export default function LoginPage() {
@@ -47,19 +48,18 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-background-secondary px-4 py-12">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
+        <div className="flex justify-center mb-8 animate-fade-in">
           <Link href="/">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">Ambi_Sight</h1>
+            <AmbiSightLogo size="lg" showText />
           </Link>
-          <p className="text-gray-600">Welcome back</p>
         </div>
 
-        <Card>
+        <Card className="shadow-fluent-lg animate-slide-up">
           <CardHeader>
-            <CardTitle>Sign in to your account</CardTitle>
-            <CardDescription>Enter your credentials to access the platform</CardDescription>
+            <CardTitle>Welcome back</CardTitle>
+            <CardDescription>Sign in to access your dashboard</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -96,19 +96,19 @@ export default function LoginPage() {
                 />
                 <Link
                   href="/forgot-password"
-                  className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                  className="text-sm text-fluent-blue hover:text-blue-700 font-medium transition-colors"
                 >
                   Forgot password?
                 </Link>
               </div>
 
               {error && (
-                <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
+                <div className="p-3 bg-red-50 border border-red-200 rounded-fluent text-sm text-red-700">
                   {error}
                 </div>
               )}
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-800">
+              <div className="bg-fluent-blue/10 border border-fluent-blue/20 rounded-fluent p-3 text-sm text-fluent-blue">
                 <p className="font-medium mb-1">Demo Credentials:</p>
                 <p className="text-xs">Admin: admin@example.com / admin123</p>
                 <p className="text-xs">Viewer: viewer@example.com / viewer123</p>
@@ -120,9 +120,9 @@ export default function LoginPage() {
             </form>
 
             <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-text-secondary">
                 Don&apos;t have an account?{' '}
-                <Link href="/register" className="text-blue-600 hover:text-blue-700 font-medium">
+                <Link href="/register" className="text-fluent-blue hover:text-blue-700 font-medium transition-colors">
                   Create an account
                 </Link>
               </p>

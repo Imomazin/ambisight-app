@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/Card';
 import { ProgressBar } from '@/components/ui/ProgressBar';
+import { AmbiSightLogo } from '@/components/branding/AmbiSightLogo';
 
 const STEPS = ['Account', 'Organisation', 'Complete'];
 
@@ -75,20 +76,19 @@ export default function RegisterPage() {
   const progress = ((step + 1) / STEPS.length) * 100;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4 py-12">
+    <div className="min-h-screen flex items-center justify-center bg-background-secondary px-4 py-12">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
+        <div className="flex justify-center mb-8 animate-fade-in">
           <Link href="/">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">Ambi_Sight</h1>
+            <AmbiSightLogo size="lg" showText />
           </Link>
-          <p className="text-gray-600">Create your account</p>
         </div>
 
-        <Card>
+        <Card className="shadow-fluent-lg animate-slide-up">
           <CardHeader>
             <div className="mb-4">
               <ProgressBar value={progress} size="sm" color="blue" />
-              <p className="text-xs text-gray-500 mt-2 text-center">
+              <p className="text-xs text-text-tertiary mt-2 text-center">
                 Step {step + 1} of {STEPS.length}: {STEPS[step]}
               </p>
             </div>
@@ -150,7 +150,7 @@ export default function RegisterPage() {
                 />
 
                 {error && (
-                  <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
+                  <div className="p-3 bg-red-50 border border-red-200 rounded-fluent text-sm text-red-700">
                     {error}
                   </div>
                 )}
@@ -189,7 +189,7 @@ export default function RegisterPage() {
                 />
 
                 {error && (
-                  <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
+                  <div className="p-3 bg-red-50 border border-red-200 rounded-fluent text-sm text-red-700">
                     {error}
                   </div>
                 )}
@@ -220,9 +220,9 @@ export default function RegisterPage() {
 
             {step < 2 && (
               <div className="mt-6 text-center">
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-text-secondary">
                   Already have an account?{' '}
-                  <Link href="/login" className="text-blue-600 hover:text-blue-700 font-medium">
+                  <Link href="/login" className="text-fluent-blue hover:text-blue-700 font-medium transition-colors">
                     Sign in
                   </Link>
                 </p>

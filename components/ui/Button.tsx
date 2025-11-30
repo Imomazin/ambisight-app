@@ -12,13 +12,13 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 disabled:bg-blue-300',
+    'bg-fluent-blue text-white hover:bg-blue-700 active:bg-blue-800 disabled:bg-blue-300 shadow-fluent-sm hover:shadow-fluent hover:-translate-y-0.5',
   secondary:
-    'bg-gray-600 text-white hover:bg-gray-700 active:bg-gray-800 disabled:bg-gray-300',
+    'bg-text-secondary text-white hover:bg-gray-700 active:bg-gray-800 disabled:bg-gray-300 shadow-fluent-sm hover:shadow-fluent',
   outline:
-    'border-2 border-blue-600 text-blue-600 hover:bg-blue-50 active:bg-blue-100 disabled:border-blue-300 disabled:text-blue-300',
+    'border-2 border-border text-text-primary hover:bg-background-secondary hover:border-fluent-blue active:bg-gray-100 disabled:border-gray-300 disabled:text-gray-300',
   ghost:
-    'text-gray-700 hover:bg-gray-100 active:bg-gray-200 disabled:text-gray-300',
+    'text-text-primary hover:bg-background-secondary active:bg-gray-200 disabled:text-gray-300',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -37,7 +37,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    'font-medium rounded-lg transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed';
+    'font-semibold rounded-fluent transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-fluent-blue focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50';
 
   const classes = [
     baseStyles,
