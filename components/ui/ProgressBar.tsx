@@ -16,9 +16,9 @@ const sizeStyles = {
 };
 
 const colorStyles = {
-  blue: 'bg-blue-600',
+  blue: 'bg-fluent-blue',
   green: 'bg-green-600',
-  purple: 'bg-purple-600',
+  purple: 'bg-fluent-purple',
 };
 
 export function ProgressBar({
@@ -35,13 +35,13 @@ export function ProgressBar({
     <div className="w-full">
       {(label || showPercentage) && (
         <div className="flex items-center justify-between mb-2">
-          {label && <span className="text-sm font-medium text-gray-700">{label}</span>}
+          {label && <span className="text-sm font-medium text-text-primary">{label}</span>}
           {showPercentage && (
-            <span className="text-sm font-medium text-gray-600">{Math.round(percentage)}%</span>
+            <span className="text-sm font-medium text-text-secondary">{Math.round(percentage)}%</span>
           )}
         </div>
       )}
-      <div className={`w-full bg-gray-200 rounded-full overflow-hidden ${sizeStyles[size]}`}>
+      <div className={`w-full bg-background-secondary rounded-full overflow-hidden ${sizeStyles[size]}`}>
         <div
           className={`${sizeStyles[size]} ${colorStyles[color]} rounded-full transition-all duration-300 ease-in-out`}
           style={{ width: `${percentage}%` }}

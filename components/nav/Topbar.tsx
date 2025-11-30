@@ -17,18 +17,18 @@ export function Topbar() {
   const org = user ? mockDb.getOrganisationById(user.organisationId) : null;
 
   return (
-    <header className="bg-white border-b border-gray-200">
+    <header className="bg-white border-b border-border shadow-fluent-sm">
       <div className="flex items-center justify-between px-6 py-4">
         <div className="flex-1">
           {/* Organisation Selector */}
           {org && (
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-700 font-semibold text-sm">
+              <div className="w-8 h-8 rounded-fluent bg-gradient-to-br from-fluent-blue to-fluent-teal flex items-center justify-center text-white font-semibold text-sm shadow-fluent-sm">
                 {org.name.charAt(0).toUpperCase()}
               </div>
               <div>
-                <div className="text-sm font-medium text-gray-900">{org.name}</div>
-                <div className="text-xs text-gray-500 capitalize">{org.size} • {org.sector || 'General'}</div>
+                <div className="text-sm font-medium text-text-primary">{org.name}</div>
+                <div className="text-xs text-text-tertiary capitalize">{org.size} • {org.sector || 'General'}</div>
               </div>
             </div>
           )}
@@ -37,14 +37,14 @@ export function Topbar() {
         <div className="flex items-center gap-4">
           {user && (
             <>
-              <div className="text-sm text-gray-600 flex items-center gap-3">
+              <div className="text-sm text-text-secondary flex items-center gap-3">
                 <div className="text-right">
-                  <div className="font-medium text-gray-900">{user.name}</div>
-                  <div className="text-xs text-gray-500 capitalize">
+                  <div className="font-medium text-text-primary">{user.name}</div>
+                  <div className="text-xs text-text-tertiary capitalize">
                     {user.role.replace(/_/g, ' ')}
                   </div>
                 </div>
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold">
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-fluent-blue to-fluent-purple flex items-center justify-center text-white font-semibold shadow-fluent-sm">
                   {user.name.charAt(0).toUpperCase()}
                 </div>
               </div>
