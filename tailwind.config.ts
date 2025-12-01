@@ -9,6 +9,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // AmbiSight Brand System - Microsoft-inspired
+        ambi: {
+          bgPage: '#F3F4F6',
+          bgSurface: '#FFFFFF',
+          bgSurfaceSubtle: '#F9FAFB',
+          primary: '#2563EB',
+          primaryDark: '#1D4ED8',
+          primarySoft: '#DBEAFE',
+          msRed: '#F25022',
+          msGreen: '#7FBA00',
+          msBlue: '#0078D4',
+          msYellow: '#FFB900',
+          accentTeal: '#14B8A6',
+          accentPurple: '#8B5CF6',
+          accentOrange: '#F97316',
+          borderSubtle: '#E5E7EB',
+          textMain: '#111827',
+          textMuted: '#6B7280',
+          textSoft: '#9CA3AF',
+        },
+
         // Sophisticated Neutral System with Depth
         neutral: {
           50: '#FAFAFA',
@@ -267,6 +288,11 @@ const config: Config = {
 
       // Advanced Gradients
       backgroundImage: {
+        // AmbiSight gradients
+        'ambi-gradient-hero': 'radial-gradient(ellipse at top, #FFFFFF 0%, #F9FAFB 50%, #EFF6FF 100%)',
+        'ambi-gradient-cta': 'linear-gradient(135deg, #2563EB 0%, #8B5CF6 100%)',
+        'ambi-gradient-card': 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(219, 234, 254, 0.3) 100%)',
+        // Existing gradients
         'gradient-primary': 'linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)',
         'gradient-success': 'linear-gradient(135deg, #10B981 0%, #06B6D4 100%)',
         'gradient-warm': 'linear-gradient(135deg, #F59E0B 0%, #F43F5E 100%)',

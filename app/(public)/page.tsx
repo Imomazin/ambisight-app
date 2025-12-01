@@ -1,43 +1,10 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
-import { AmbiSightLogo } from '@/components/branding/AmbiSightLogo';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="border-b border-border bg-white/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <AmbiSightLogo size="md" showText />
-
-          {/* Center Navigation Links - Hidden on mobile */}
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#product" className="text-sm font-medium text-text-primary hover:text-fluent-blue transition-colors">
-              Product
-            </a>
-            <a href="#research" className="text-sm font-medium text-text-primary hover:text-fluent-blue transition-colors">
-              Research
-            </a>
-            <a href="#pricing" className="text-sm font-medium text-text-primary hover:text-fluent-blue transition-colors">
-              Pricing
-            </a>
-            <a href="#resources" className="text-sm font-medium text-text-primary hover:text-fluent-blue transition-colors">
-              Resources
-            </a>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Link href="/login">
-              <Button variant="ghost" size="sm">Sign In</Button>
-            </Link>
-            <Link href="/register">
-              <Button variant="primary" size="sm">Get Started</Button>
-            </Link>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section - Summit Style with Floating Cards */}
+    <>
+      {/* Hero Section - Microsoft Summit Style with Floating Cards */}
       <section className="relative overflow-hidden bg-gradient-hero min-h-[90vh] flex items-center">
         {/* Ambient Gradient Blobs */}
         <div className="ambient-blob w-96 h-96 bg-primary top-20 right-20" style={{ animationDelay: '0s' }}></div>
@@ -442,19 +409,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border bg-white py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <AmbiSightLogo size="sm" showText />
-            </div>
-            <p className="text-sm text-text-tertiary">
-              © {new Date().getFullYear()} AmbiSight. Precision diagnostics for organisational ambidexterity.
-            </p>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </>
   );
 }

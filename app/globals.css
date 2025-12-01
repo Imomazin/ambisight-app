@@ -94,6 +94,16 @@
     transform: translateY(0px) scale(0.99);
   }
 
+  /* Premium Card - Enhanced elevation and styling */
+  .premium-card {
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    border: 1px solid rgba(229, 229, 229, 0.8);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04),
+                0 8px 16px -4px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   /* Premium Button Effects */
   .btn-primary {
     position: relative;
@@ -324,6 +334,60 @@
 
   .spotlight:hover::before {
     opacity: 1;
+  }
+
+  /* Ambient Blobs for Hero */
+  .ambient-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    animation: float-blob 20s ease-in-out infinite;
+  }
+
+  @keyframes float-blob {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(30px, -30px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+  }
+
+  /* Glass Card for Hero */
+  .glass-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+  }
+
+  /* Float Card Animation */
+  .float-card {
+    animation: float-card 8s ease-in-out infinite;
+  }
+
+  @keyframes float-card {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+
+  /* Fluent Gradient Soft */
+  .fluent-gradient-soft {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(59, 130, 246, 0.1) 0%,
+      rgba(139, 92, 246, 0.05) 50%,
+      transparent 100%
+    );
   }
 }
 
