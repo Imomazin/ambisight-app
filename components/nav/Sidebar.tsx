@@ -61,26 +61,57 @@ export function Sidebar() {
       </div>
 
       <nav className="px-4 pt-6 flex-1">
-        <ul className="space-y-1">
-          {filteredNavItems.map((item) => {
-            const isActive = pathname === item.href || pathname?.startsWith(`${item.href}/`);
-            return (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={`flex items-center gap-3 px-4 py-2.5 rounded-fluent text-sm font-medium transition-all ${
-                    isActive
-                      ? 'bg-fluent-blue/10 text-fluent-blue shadow-fluent-sm'
-                      : 'text-text-primary hover:bg-background-secondary hover:text-fluent-blue'
-                  }`}
-                >
-                  {item.icon}
-                  {item.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        {/* Main Section */}
+        <div className="mb-6">
+          <div className="text-eyebrow text-text-soft mb-3 px-4">Main</div>
+          <ul className="space-y-1">
+            {filteredNavItems.slice(0, 2).map((item) => {
+              const isActive = pathname === item.href || pathname?.startsWith(`${item.href}/`);
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`flex items-center gap-3 px-4 py-2.5 rounded-fluent text-sm font-medium transition-all ${
+                      isActive
+                        ? 'bg-primary/10 text-primary shadow-soft'
+                        : 'text-text-primary hover:bg-bg-page hover:text-primary'
+                    }`}
+                  >
+                    {item.icon}
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+        {/* Admin Section */}
+        {filteredNavItems.length > 2 && (
+          <div>
+            <div className="text-eyebrow text-text-soft mb-3 px-4">Settings</div>
+            <ul className="space-y-1">
+              {filteredNavItems.slice(2).map((item) => {
+                const isActive = pathname === item.href || pathname?.startsWith(`${item.href}/`);
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={`flex items-center gap-3 px-4 py-2.5 rounded-fluent text-sm font-medium transition-all ${
+                        isActive
+                          ? 'bg-primary/10 text-primary shadow-soft'
+                          : 'text-text-primary hover:bg-bg-page hover:text-primary'
+                      }`}
+                    >
+                      {item.icon}
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
       </nav>
 
       {user && (
