@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { AuthProvider } from "@/context/AuthContext";
+import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: "Ambi_Sight | Organisational Ambidexterity Diagnostic",
-  description: "Privacy-preserving organisational ambidexterity diagnostic platform powered by federated learning",
+  title: 'AmbiSight V2 - Organizational Ambidexterity Platform',
+  description: 'Microsoft Copilot-grade diagnostic platform for organizational ambidexterity analysis',
 };
 
 export default function RootLayout({
@@ -14,8 +13,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased font-sans">
-        <AuthProvider>{children}</AuthProvider>
+      <body className="antialiased">
+        {children}
       </body>
     </html>
   );

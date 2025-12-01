@@ -1,146 +1,97 @@
-'use client';
-
 import Link from 'next/link';
-import { AmbiSightLogo } from '@/components/branding/AmbiSightLogo';
-import { Button } from '@/components/ui/Button';
-import { useRouter } from 'next/navigation';
-
-const navigationLinks = [
-  { name: 'Product', href: '/#product' },
-  { name: 'Research', href: '/#research' },
-  { name: 'Use cases', href: '/#use-cases' },
-  { name: 'Pricing', href: '/#pricing' },
-];
 
 export default function PublicLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const router = useRouter();
-
   return (
-    <div className="min-h-screen bg-ambi-bgPage">
-      {/* Top Navigation Bar */}
-      <nav className="sticky top-0 z-50 bg-ambi-bgSurface/80 backdrop-blur-glass border-b border-ambi-borderSubtle shadow-soft">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+    <div className="min-h-screen bg-white">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-neutral-200">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex-shrink-0">
-              <AmbiSightLogo size="md" showText linkTo="/" />
+            <Link href="/" className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-purple rounded-lg flex items-center justify-center shadow-lg">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+              <span className="text-2xl font-semibold text-foreground">AmbiSight</span>
+            </Link>
+
+            {/* Nav Links */}
+            <div className="hidden md:flex items-center space-x-8">
+              <Link href="/features" className="text-neutral-700 hover:text-primary transition-colors">
+                Features
+              </Link>
+              <Link href="/about" className="text-neutral-700 hover:text-primary transition-colors">
+                About
+              </Link>
+              <Link href="/pricing" className="text-neutral-700 hover:text-primary transition-colors">
+                Pricing
+              </Link>
             </div>
 
-            {/* Center Navigation Links */}
-            <div className="hidden md:flex items-center gap-8">
-              {navigationLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm font-medium text-ambi-textMuted hover:text-ambi-primary transition-colors"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
-
-            {/* Right Actions */}
-            <div className="flex items-center gap-3">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => router.push('/login')}
+            {/* Auth Buttons */}
+            <div className="flex items-center space-x-4">
+              <Link href="/signin" className="text-neutral-700 hover:text-primary transition-colors">
+                Sign In
+              </Link>
+              <Link
+                href="/signup"
+                className="fluent-button-primary px-6 py-2 rounded-lg text-white font-medium"
               >
-                Sign in
-              </Button>
-              <Button
-                variant="primary"
-                size="sm"
-                onClick={() => router.push('/signup')}
-                className="hidden sm:flex"
-              >
-                Start free diagnostic
-              </Button>
+                Get Started
+              </Link>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Page Content */}
-      <main>{children}</main>
+      {/* Main Content */}
+      <main className="pt-20">
+        {children}
+      </main>
 
       {/* Footer */}
-      <footer className="bg-ambi-bgSurface border-t border-ambi-borderSubtle mt-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+      <footer className="bg-neutral-50 border-t border-neutral-200 mt-32">
+        <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {/* Brand Column */}
-            <div className="col-span-1">
-              <AmbiSightLogo size="md" showText linkTo="/" />
-              <p className="mt-4 text-sm text-ambi-textMuted">
-                Strategic insights for organizational ambidexterity
+            <div>
+              <h3 className="font-semibold text-foreground mb-4">AmbiSight</h3>
+              <p className="text-sm text-neutral-600">
+                Precision diagnostics for organizational ambidexterity.
               </p>
             </div>
-
-            {/* Product Column */}
             <div>
-              <h3 className="text-sm font-semibold text-ambi-textMain mb-4">Product</h3>
-              <ul className="space-y-3">
-                <li>
-                  <Link href="/#features" className="text-sm text-ambi-textMuted hover:text-ambi-primary transition-colors">
-                    Features
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/#pricing" className="text-sm text-ambi-textMuted hover:text-ambi-primary transition-colors">
-                    Pricing
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/diagnostics" className="text-sm text-ambi-textMuted hover:text-ambi-primary transition-colors">
-                    Diagnostics
-                  </Link>
-                </li>
+              <h4 className="font-medium text-foreground mb-4">Product</h4>
+              <ul className="space-y-2 text-sm text-neutral-600">
+                <li><Link href="/features" className="hover:text-primary">Features</Link></li>
+                <li><Link href="/pricing" className="hover:text-primary">Pricing</Link></li>
+                <li><Link href="/about" className="hover:text-primary">About</Link></li>
               </ul>
             </div>
-
-            {/* Research Column */}
             <div>
-              <h3 className="text-sm font-semibold text-ambi-textMain mb-4">Research</h3>
-              <ul className="space-y-3">
-                <li>
-                  <Link href="/#research" className="text-sm text-ambi-textMuted hover:text-ambi-primary transition-colors">
-                    Methodology
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/#research" className="text-sm text-ambi-textMuted hover:text-ambi-primary transition-colors">
-                    Publications
-                  </Link>
-                </li>
+              <h4 className="font-medium text-foreground mb-4">Resources</h4>
+              <ul className="space-y-2 text-sm text-neutral-600">
+                <li><Link href="#" className="hover:text-primary">Documentation</Link></li>
+                <li><Link href="#" className="hover:text-primary">Research</Link></li>
+                <li><Link href="#" className="hover:text-primary">Blog</Link></li>
               </ul>
             </div>
-
-            {/* Company Column */}
             <div>
-              <h3 className="text-sm font-semibold text-ambi-textMain mb-4">Company</h3>
-              <ul className="space-y-3">
-                <li>
-                  <Link href="/#about" className="text-sm text-ambi-textMuted hover:text-ambi-primary transition-colors">
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/#contact" className="text-sm text-ambi-textMuted hover:text-ambi-primary transition-colors">
-                    Contact
-                  </Link>
-                </li>
+              <h4 className="font-medium text-foreground mb-4">Company</h4>
+              <ul className="space-y-2 text-sm text-neutral-600">
+                <li><Link href="#" className="hover:text-primary">Contact</Link></li>
+                <li><Link href="#" className="hover:text-primary">Privacy</Link></li>
+                <li><Link href="#" className="hover:text-primary">Terms</Link></li>
               </ul>
             </div>
           </div>
-
-          <div className="mt-12 pt-8 border-t border-ambi-borderSubtle">
-            <p className="text-sm text-ambi-textSoft text-center">
-              © {new Date().getFullYear()} AmbiSight. All rights reserved.
-            </p>
+          <div className="mt-8 pt-8 border-t border-neutral-200 text-center text-sm text-neutral-600">
+            © 2025 AmbiSight. All rights reserved.
           </div>
         </div>
       </footer>

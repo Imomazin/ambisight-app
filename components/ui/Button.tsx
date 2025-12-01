@@ -1,57 +1,40 @@
-import React from 'react';
+import { cn } from '@/lib/utils/cn';
+import { ButtonHTMLAttributes, forwardRef } from 'react';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost';
-export type ButtonSize = 'sm' | 'md' | 'lg';
-
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-  fullWidth?: boolean;
-  children: React.ReactNode;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'ghost' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
 }
 
-const variantStyles: Record<ButtonVariant, string> = {
-  primary:
-    'bg-fluent-blue text-white hover:bg-blue-700 active:bg-blue-800 disabled:bg-blue-300 shadow-fluent-sm hover:shadow-fluent hover:-translate-y-0.5',
-  secondary:
-    'bg-text-secondary text-white hover:bg-gray-700 active:bg-gray-800 disabled:bg-gray-300 shadow-fluent-sm hover:shadow-fluent',
-  outline:
-    'border-2 border-border text-text-primary hover:bg-background-secondary hover:border-fluent-blue active:bg-gray-100 disabled:border-gray-300 disabled:text-gray-300',
-  ghost:
-    'text-text-primary hover:bg-background-secondary active:bg-gray-200 disabled:text-gray-300',
-};
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant = 'primary', size = 'md', ...props }, ref) => {
+    return (
+      <button
+        className={cn(
+          'inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
+          'disabled:pointer-events-none disabled:opacity-50',
+          {
+            // Variants
+            'fluent-button-primary hover:scale-[1.02] active:scale-[0.98]': variant === 'primary',
+            'fluent-button-secondary hover:scale-[1.02] active:scale-[0.98]': variant === 'secondary',
+            'bg-transparent hover:bg-neutral-100 text-neutral-700': variant === 'ghost',
+            'border-2 border-primary text-primary hover:bg-primary-50': variant === 'outline',
 
-const sizeStyles: Record<ButtonSize, string> = {
-  sm: 'px-3 py-1.5 text-sm',
-  md: 'px-4 py-2 text-base',
-  lg: 'px-6 py-3 text-lg',
-};
+            // Sizes
+            'px-4 py-2 text-sm': size === 'sm',
+            'px-6 py-3 text-base': size === 'md',
+            'px-8 py-4 text-lg': size === 'lg',
+          },
+          className
+        )}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
 
-export function Button({
-  variant = 'primary',
-  size = 'md',
-  fullWidth = false,
-  className = '',
-  children,
-  disabled,
-  ...props
-}: ButtonProps) {
-  const baseStyles =
-    'font-semibold rounded-fluent transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-fluent-blue focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50';
+Button.displayName = 'Button';
 
-  const classes = [
-    baseStyles,
-    variantStyles[variant],
-    sizeStyles[size],
-    fullWidth ? 'w-full' : '',
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
-
-  return (
-    <button className={classes} disabled={disabled} {...props}>
-      {children}
-    </button>
-  );
-}
+export { Button };
